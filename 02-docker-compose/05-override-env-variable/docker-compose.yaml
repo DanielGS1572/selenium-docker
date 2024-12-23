@@ -4,8 +4,8 @@ services:
     image: vinsdocker/squares
     environment:
     #- NUMBER=${NUM}
-    #- NUMBER=${NUM:-7}
-    - NUMBER
+    - NUMBER=${NUM:-7}
+    #- NUMBER     #SERÍA SIMILAR A - NUMBER=${NUMBER}
 
 
 # NUM=3 docker-compose up

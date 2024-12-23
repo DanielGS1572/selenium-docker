@@ -4,5 +4,5 @@ services:
     image: alpine
     entrypoint: "ping nginx"
 
-# docker-compose -f alpine.yaml up
+# docker-compose -f alpine.yaml up -d
 # docker-compose -f alpine.yaml down
