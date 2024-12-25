@@ -2,16 +2,16 @@ services:
   hub:
     image: selenium/hub:4.27
     ports:
-    - 4444:4444
-    # - 4442:4442
+    - 4444:4444       # External communication (para poder acceder a la UI)
+    # - 4442:4442     # Internal communication (no es necesario hacer el mapping)
     # - 4443:4443
   chrome:
     image: selenium/node-chromium:4.27
-    shm_size: '2g'
+    shm_size: '2g'                        # shared memory size
     depends_on:
     - hub
-    environment:
-    - SE_EVENT_BUS_HOST=hub
+    environment:                          # Dentro de la documentación en la sección de hubs and nodes dan este yaml file => https://github.com/SeleniumHQ/docker-selenium/blob/trunk/docker-compose-v3.yml
+    - SE_EVENT_BUS_HOST=hub               # es el service que se definió arriba
     - SE_EVENT_BUS_PUBLISH_PORT=4442
     - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   firefox:

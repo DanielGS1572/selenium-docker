@@ -35,20 +35,21 @@ public abstract class AbstractTest {
 
     @BeforeTest
     public void setDriver(ITestContext ctx) throws MalformedURLException {
+        //Boolean.getBoolean("selenium.grid.enabled") es como si se hiciera System.getProperty("selenium.grid.enabled") pero estaría regresando un string
         this.driver = Boolean.parseBoolean(Config.get(Constants.GRID_ENABLED)) ? getRemoteDriver() : getLocalDriver();
         ctx.setAttribute(Constants.DRIVER, this.driver);
     }
 
     private WebDriver getRemoteDriver() throws MalformedURLException {
         Capabilities capabilities = new ChromeOptions();
-        if(Constants.FIREFOX.equalsIgnoreCase(Config.get(Constants.BROWSER))){
+        if(Constants.FIREFOX.equalsIgnoreCase(Config.get(Constants.BROWSER))){      //System.getProperty("browser") -> Estaría leyendo el tag configurado en surefire
             capabilities = new FirefoxOptions();
         }
         String urlFormat = Config.get(Constants.GRID_URL_FORMAT);
         String hubHost = Config.get(Constants.GRID_HUB_HOST);
         String url = String.format(urlFormat, hubHost);
         log.info("grid url: {}", url);
-        return new RemoteWebDriver(new URL(url), capabilities);
+        return new RemoteWebDriver(new URL(url), capabilities);         //los requests tienen que ir dirigdos a la URL => http://localhost:4444/wd/hub
     }
 
     private WebDriver getLocalDriver(){

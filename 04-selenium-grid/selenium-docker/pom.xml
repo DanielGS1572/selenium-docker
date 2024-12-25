@@ -78,7 +78,8 @@
                 <configuration>
                     <!-- mvn clean test -Dbrowser=chrome -Dselenium.grid.enabled=true -->
                     <systemPropertyVariables>
-                        <browser>chrome</browser>
+                        <browser>firefox</browser>
+                        <!-- Este tag (selenium.grid.enabled) fue definido por el instructor y se usa para poder correr en local o en el grid-->
                         <selenium.grid.enabled>true</selenium.grid.enabled>
                     </systemPropertyVariables>
                     <suiteXmlFiles>

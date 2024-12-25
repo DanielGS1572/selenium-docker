@@ -19,7 +19,7 @@ public class ResourceLoader {
 
     public static InputStream getResource(String path) throws Exception {
         log.info("reading resource from location: {}", path);
-        InputStream stream = ResourceLoader.class.getClassLoader().getResourceAsStream(path);
+        InputStream stream = ResourceLoader.class.getClassLoader().getResourceAsStream(path);       //de aqui se intenta leer desde el classpath
         if(Objects.nonNull(stream)){
             return stream;
         }
